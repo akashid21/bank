@@ -1,0 +1,6 @@
+%p.text-black hello to 
+= current_user.name
+= "account number is #{current_user.account_number} and balance is Rs.#{current_user.balance}"
+- if user_signed_in?
+  = button_to 'Logout ', destroy_user_session_path, method: :delete,class: 'btn btn-primary'
+  = link_to 'Send money', users_transfer_path, class: 'btn btn-primary'

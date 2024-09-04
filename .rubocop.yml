@@ -1,0 +1,162 @@
+AllCops:
+  DisabledByDefault: true
+  Exclude: 
+    - 'bin/**/*'
+    - 'test/**/*'
+    - 'spec/rails_helpers/*'
+    - 'spec/spec_helpers/*'
+    - 'db/**/*'
+    - 'config/initializers/*'
+
+
+# This checks the indentation of the first line of the multiline assignment.
+Layout/AssignmentIndentation:
+  IndentationWidth: 2
+
+# This enforces the comments which dont have proper indentation 
+Layout/CommentIndentation:
+  Enabled: true
+
+# this checks if there are two or more consecutive blank lines in the code.
+Layout/EmptyLines:
+  Enabled: true
+
+# This checks if the class, module or methods are separated by one or more empty lines or not.
+Layout/EmptyLineBetweenDefs:
+  Enabled: true
+
+# This basically checks if the indentation of the first key in the hash and the opening braces
+# are on the separate line.
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
+# This is used to check if the indentation throughout the code is consistent or not.
+# In normal it checks if the memthods in class or modules access specifiers have same indentation.
+Layout/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: normal
+
+# This is used to checkc of the  indentation of the method is consistentor not, should be either tabs or spaces.
+Layout/IndentationStyle:
+  Enabled: true
+
+# Used to check the indentation that is not using the specific number or spaces
+Layout/IndentationWidth:
+  Enabled: true
+
+
+# This is used tp check the alignment of the 'rescur' and 'ensure' keywords.
+Layout/RescueEnsureAlignment:
+  Enabled: true
+
+# This is used to check the spacing inside and after the block parameter pipes. The default is no spceing
+# e.g :  {}.each { |a| puts a }
+Layout/SpaceAroundBlockParameters:
+  Enabled: true
+
+# This is same as above but instead checks for the spaces before the block braces.
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
+# This is used to check that the block braces have or dont have the spaces surrounding inside them.
+# Default it enforces spaces in the braces.
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+
+# This is used to check the spaces for hashes, were they have or dont have surrounding spaces.
+# Default it is 'space', which means they should have spaces.
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+# Checks if there is any need of parenthesis whenever calling a predicate method with an argument.
+Lint/RequireParentheses:
+  Enabled: true
+
+# It looks for any trailling whitespaces throughout the code.
+Layout/TrailingWhitespace:
+  Enabled: true
+
+# It is used to check if there are any non-ascii characters which may be are used for identifiers and names.
+Naming/AsciiIdentifiers:
+  Enabled: true
+
+# It checks if the name of the module and class are in camel case and does not have unserscore in between.
+Naming/ClassAndModuleCamelCase:
+  Enabled: true
+
+# It makes sure that the filename follow the snake_case name, also files with a shebang in the first line are ignored. 
+Naming/FileName:
+  Enabled: true
+
+# It is used to make sure that all the methods uses the configured style such as camleCase or snake_case.
+# In defualt the style for method name is snake_case
+Naming/MethodName:
+  Enabled: true
+
+# Used to check that the predicate methods end with '?' and do not have prefix in start.
+Naming/PredicateName:
+  Enabled: true
+
+# Used to make sure that all the variable name use the configured naming style such as snake_case or camelCase.
+# By default it is snake_case
+Naming/VariableName:
+  Enabled: true
+
+# It checks if there is any use of 'and' and 'or' and suggests to use the '&&' and '||' instead.
+Style/AndOr:
+  Enabled: true
+
+# It checks for the use of braces or do/end around the single line or multi line blocks.
+# By default it is 'line_count_based'
+Style/BlockDelimiters:
+  Enabled: true
+
+# This enforces the use of both the hash rocket syntax or the use of newer ruby 1.9 syntax.
+# There are separate offenses for both the styles, by default it uses the ruby19.
+Style/HashSyntax:
+  Enabled: true
+
+# This checks for the numberic literals without the '_' bewteen the groups of digit.
+Style/NumericLiterals:
+  Enabled: true
+  Exclude: 
+  - db/schema.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude: 
+  - spec/**/*
+  - config/routes.rb
+  - config/environments/*
+
+Style/BlockComments:
+  Enabled: true
+  Exclude:
+  - spec/spec_helper.rb
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: true
+  Exclude:
+  - spec/spec_helper.rb
+
+Style/StringLiterals:
+  Enabled: true
+  Exclude:
+  - db/**/*
+  
+Layout/LineLength:
+  Enabled: true
+  Exclude:
+  - config/**/*
+
+Style/RedundantFetchBlock:
+  Enabled: true
+  Exclude:
+  - config/**/*
+
+Style/SymbolArray:
+  Enabled: true

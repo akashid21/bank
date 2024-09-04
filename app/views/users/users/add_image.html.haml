@@ -1,0 +1,7 @@
+wlcom to images 
+
+= form_with model: @image, url: users_create_image_path, method: :put do |f|
+  = f.label :images
+  = f.file_field :images,  multiple: true
+
+  = f.submit
