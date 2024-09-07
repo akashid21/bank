@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
     case resource.role
     when 'user'
       users_root_path
-    # when 'Student'
-    #   students_homepage_path
     end
   end
 

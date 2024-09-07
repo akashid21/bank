@@ -1,0 +1,7 @@
+Depoiste Money
+
+= form_with url: users_deposite_money_path, method: :post do |f|
+  = f.label :ammount
+  = f.number_field :ammount, autocomplete: 'off'
+
+  = f.submit 'Deposite!', class: 'btn btn-primary'

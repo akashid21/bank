@@ -1,0 +1,12 @@
+%table.table.table-hover.table-striped.table-secondary.table-responsive.table-bordered.text-black
+  %thead.table-dark
+    %tr
+      %th Initial balance
+      %th Transaction
+      %th Final balance
+  %tbody.table-group-divider
+    - @history.each do |hist|
+      %tr
+        %td= hist.initial_balance
+        %td= hist.transaction_history
+        %td= hist.final_balance
