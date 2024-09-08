@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource.role
     when 'user'
-      users_root_path
+      users_homepage_path
+    else
+      super
     end
   end
 

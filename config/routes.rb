@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   namespace :users do
-    root to: 'page#homepage'
+    get '/homepage', to: 'page#homepage'
+    root to: redirect('/homepage')
     get '/add_image', to: 'users#add_image'
     put '/create_image', to: 'users#create_image'
     get '/transfer', to: 'users#transfer'

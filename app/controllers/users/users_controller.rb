@@ -1,15 +1,17 @@
 class Users::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_ammount, :set_to_account_number, only: [:execute_transfer]
+  before_action :set_ammount, only: %i[execute_transfer deposite_money]
+  before_action :set_to_account_number, only: %i[execute_transfer]
   
   def create_image
   end
 
   def execute_transfer
-    # debugger 
+    if current_user.balance < @ammount
+      return redirect_to users_transfer_path, alert: 'Low balance'
+    end
     @sender_initial_balance = current_balance(current_user)
     @reciever_initial_balance = current_balance(@to_user)
-    # debugger
     credited_ammount = @reciever_initial_balance + @ammount
     debited_ammount = @sender_initial_balance - @ammount
 
@@ -38,18 +40,21 @@ class Users::UsersController < ApplicationController
 
   # post method for deposite 
   def deposite_money
-    history = current_user.account_histories.new
-    @deposite_ammount = params[:ammount].to_i
-    if @deposite_ammount < 1
-      return redirect_to users_deposite_path, alert: 'Invalid ammount'
-    end
-    @final_ammount = current_user.balance + @deposite_ammount
+    # debugger  
+    @initial_balance = current_balance(current_user)
+    @final_ammount = @initial_balance + @ammount
     if current_user.update(balance: @final_ammount)
-      history.initial_balance = current_user.balance
+      # update current user account history
+      history = current_user.account_histories.new
+      history.initial_balance = @initial_balance
+      statement = "Rs.#{@ammount} deposited to #{current_user.name}"
       history.final_balance = @final_ammount.to_i
-      statement = "Rs.#{@deposite_ammount} deposited to #{current_user.name}"
       history.transaction_history = statement.to_s
       history.save
+      UserMailer.with(
+        deposite_ammount: @ammount,
+        user: current_user
+      ).money_deposite.deliver_now
     end
     redirect_to users_root_path, notice: 'Deposited successfully!!'
   end
@@ -58,8 +63,13 @@ class Users::UsersController < ApplicationController
 
   def set_ammount
     @ammount = params[:ammount].to_i
-    if current_user.balance < @ammount
-      return redirect_to users_transfer_path, alert: 'Low balance'
+    flash[:alert] = 'invalid ammount' if @ammount <= 0
+    if flash[:alert].present?
+      if request.referer.include? '/users/deposite'
+        redirect_to users_deposite_path
+      elsif request.referer.include? '/users/transfer'
+        redirect_to users_transfer_path
+      end
     end
   end
 
