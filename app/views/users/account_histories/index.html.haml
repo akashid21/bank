@@ -1,3 +1,8 @@
+= search_form_for @q, url: users_account_histories_path do |f|
+  = f.label :transaction
+  = f.text_field :transaction_history_cont
+
+  = f.submit 'Search'
 %table.table.table-hover.table-striped.table-secondary.table-responsive.table-bordered.text-black
   %thead.table-dark
     %tr
@@ -10,3 +15,5 @@
         %td= hist.initial_balance
         %td= hist.transaction_history
         %td= hist.final_balance
+
+= will_paginate @history, class: 'digg_pagination'

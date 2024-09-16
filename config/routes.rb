@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     post '/execute_transfer', to: 'users#execute_transfer'
     get '/deposite', to: 'users#deposite'
     post '/deposite_money', to: 'users#deposite_money'
+    get '/upload_avatar', to: 'avatar#edit'
+    put '/upload_avatar', to: 'avatar#update'
+    delete '/delete_avatar', to: 'avatar#destroy'
 
+    resources :set_pin, only: %i[edit update]
     resources :account_histories, only: [:index]
   end
 end

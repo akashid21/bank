@@ -15,6 +15,9 @@ module Hdfc
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
+    ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+      html_tag.html_safe
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

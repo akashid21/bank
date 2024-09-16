@@ -1,0 +1,5 @@
+= form_with model: current_user, url: users_set_pin_path(current_user), method: :patch do |f|
+  = f.label :pin_number
+  = f.number_field :pin_number
+
+  = f.submit 'Set pin', class: 'btn btn-success'

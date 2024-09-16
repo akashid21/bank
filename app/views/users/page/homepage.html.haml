@@ -6,4 +6,5 @@
     = button_to 'Logout ', destroy_user_session_path, method: :delete,class: 'btn btn-primary'
     = link_to 'Send money', users_transfer_path, class: 'btn btn-primary'
     = link_to 'Top up money', users_deposite_path, class: 'btn btn-primary'
-    = link_to 'Account history', users_account_histories_path, class: 'btn btn-primary'
+    = link_to 'Account history', users_account_histories_path, class: 'btn btn-primary' 
+    = link_to 'Set pin', edit_users_set_pin_path(current_user), class: 'btn btn-primary'

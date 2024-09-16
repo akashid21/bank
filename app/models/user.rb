@@ -10,8 +10,9 @@ class User < ApplicationRecord
     inactive: 'inactive',
     archived: 'archived'
   }
-  has_many_attached :images
+  has_one_attached :image
 
+  validates :pin_number, length: { is: 4 }, if: -> { pin_number.present? }
   validates :name, presence: true, length: { minimum: 2 },
             format: { with: /[a-zA-Z]+/, message: 'Only letters allowed' }
   validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 80 }
